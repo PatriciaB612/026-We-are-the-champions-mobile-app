@@ -18,18 +18,16 @@ const UlEl = document.getElementById('ul-el')
 
 publishBtn.addEventListener('click', function () {
   push(endorsementsListInDB, inputEl.value)
-  appendItemToEndorsementsList()
   inputEl.value = ''
 })
 
 onValue(endorsementsListInDB, function (snapshot) {
   let itemsArray = Object.values(snapshot.val())
   UlEl.innerHTML = ''
-  for (let i = 0; i < itemsArray.length; i++) {
+  for (let i = itemsArray.length - 1; i >= 0; i--) {
     let itemValue = itemsArray[i]
     appendItemToEndorsementsList(itemValue)
   }
-  console.log(itemsArray)
 })
 
 function appendItemToEndorsementsList(itemValue) {
